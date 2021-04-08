@@ -35,4 +35,15 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.patch("/:id", async (req, res) => {
+  try {
+    const alien = await Alien.findById(req.params.id);
+    alien.sub = req.body.sub;
+    const a1 = await aliens.save();
+    res.json(a1);
+  } catch (err) {
+    res.send("err", err);
+  }
+});
+
 module.exports = router;
